@@ -1,10 +1,15 @@
 import { connect } from 'react-redux';
 import { InputHolder } from './InputHolder';
-import { changeInputComponentValue, setInputComponentParameter } from './Actions';
+import { changeInputComponentValue, setInputComponentParameter, setOutputComponentParameter } from './Actions';
 
 const mapStateToProps = function(state, ownProps) {
     return {
         inputs: state.inputs,
+        outputs: state.outputs,
+        result: state.result,
+        inputArgs: Object.keys(state.args.input),
+        outputArgs: Object.keys(state.args.output),
+        childHeight: state.componentHeight,
     }
 }
 
@@ -15,6 +20,9 @@ const mapDispatchToProps = function(dispatch, ownProps) {
         },
         setInputComponentParameter: function(componentName, parameterName, parameter) {
             dispatch(setInputComponentParameter(componentName, parameterName, parameter));
+        },
+        setOutputComponentParameter: function(componentName, parameterName, parameter) {
+            dispatch(setOutputComponentParameter(componentName, parameterName, parameter));
         }
     }
 }

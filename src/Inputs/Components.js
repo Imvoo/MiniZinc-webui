@@ -25,7 +25,7 @@ export var InputRange = React.createClass({ //slider
     render: function() {
         return (
             <div className="Input Range">
-                <div className="container">
+                <div className="container dragHandle">
                     <div className="name">{this.props.id}</div>
                     <div className="value">{this.props.value}</div>
                 </div>
@@ -58,7 +58,7 @@ export var InputTextField = React.createClass({ //text Field
     render: function() {
         return (
             <div className="Input TextField">
-                <div className="container">
+                <div className="container dragHandle">
                     <div className="name">{this.props.id}</div>
                 </div>
                 <TextField placeholder={"Enter a number"} onTextChange={this.onChange} value={this.props.value || ""} />
@@ -133,7 +133,7 @@ export var InputMatrix1D = React.createClass({
         }
 
         return <div className="Input Matrix 1D">
-            <div className="container">
+            <div className="container dragHandle">
                 <div className="name">{this.props.id}</div>
             </div>
             <div className="Parameters">
@@ -214,7 +214,7 @@ export var InputMatrix2D = React.createClass({
         }
 
         return <div className="Input Matrix 2D">
-            <div className="container">
+            <div className="container dragHandle">
                 <div className="name">{this.props.id}</div>
             </div>
             <div className="Parameters">

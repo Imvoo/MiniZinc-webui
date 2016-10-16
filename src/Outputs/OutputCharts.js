@@ -22,19 +22,24 @@ export var OutputScatterPlot = React.createClass({
                 this.props.selectedParameters['resultNum'];
             var currentResult = this.props.result[currentResultNumber];
                 console.log(this.props.selectedParameters['resultType'])
-
-            if (currentResult != null) {
+            if (currentResult != null && currentResult !== undefined) {
                 chart_data = [['rows','columns']];
                 var currentResultVar = currentResult[this.props.selectedParameters['resultType']]
-                //console.log(currentResultVar)
-                for (let i = 0; i < currentResultVar.length; ++i) {
-                  var current_element = currentResultVar[i];
-                  if (current_element.constructor === Array) {
-                      chart_data.push(current_element);
-                  } else { //if onyl 1d array
-                      chart_data.push([i,current_element]);
-                  }
+                if (currentResultVar.constructor === Array) {
+                  for (let i = 0; i < currentResultVar.length; ++i) {
+                    var current_element = currentResultVar[i];
+                    if (current_element.constructor === Array) {
+                        chart_data.push(current_element);
+                    } else { //if onyl 1d array
+                        chart_data.push([i,current_element]);
+                    }
 
+                  }
+                } else {
+                  for (let i = 0; i< this.props.result.length; ++i) {
+                    var newobj = [i, this.props.result[i][this.props.selectedParameters['resultType']]];
+                    chart_data.push(newobj);
+                  }
                 }
 
                 //var currentResultVar = [];
@@ -42,8 +47,10 @@ export var OutputScatterPlot = React.createClass({
             }
         }
 
+        var chartHeight = 300;
+
         return <div className="Output Scatter_Plot Chart">
-            <div className="container">
+            <div className="container dragHandle">
                 <div className="name">Scatter Plot {this.props.id}</div>
             </div>
             <div className="parameters">
@@ -55,7 +62,7 @@ export var OutputScatterPlot = React.createClass({
                 handleOptionChange={this.setOutputComponentParameter} default_value="Choose solution"/>
         </div>
         <div className={"my-pretty-chart-container"}>
-            <Chart chartType="ScatterChart" data={chart_data} options={{}} graph_id="ScatterChart"  width={"600px"} height={"500px"}  legend_toggle={true} />
+            <Chart chartType="ScatterChart" data={chart_data} options={{}} graph_id={"ScatterChart"+this.props.id}  width={"100%"} height={chartHeight} legend_toggle={true} />
         </div></div>
     }
 });
@@ -137,7 +144,7 @@ export var OutputGanttChart = React.createClass({
         }
 
         return <div className="Output Gantt_Chart Chart">
-            <div className="container">
+            <div className="container dragHandle">
                 <div className="name">Gantt Chart {this.props.id}</div>
             </div>
             <div className="parameters">
@@ -155,7 +162,7 @@ export var OutputGanttChart = React.createClass({
                 handleOptionChange={this.setOutputComponentParameter} default_value="Choose solution"/>
         </div>
         <div className={"my-pretty-chart-container"}>
-            <Chart chartType="Gantt" rows={chart_rows} columns={chart_columns} options={{}} graph_id="Gantt"  width={"100%"} height={"500px"}  legend_toggle={true} />
+            <Chart chartType="Gantt" rows={chart_rows} columns={chart_columns} options={{}} graph_id={"Gantt"+this.props.id}  width={"100%"} height={"500px"}  legend_toggle={true} />
         </div></div>
     }
 });

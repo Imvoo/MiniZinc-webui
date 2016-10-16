@@ -32,7 +32,7 @@ export var OutputMatrix1D = React.createClass({
         }
 
         return <div className="Output 1D_Matrix Matrix">
-            <div className="container">
+            <div className="container dragHandle">
                 <div className="name">1D Matrix {this.props.id}</div>
             </div>
             <div className="parameters">
@@ -90,7 +90,7 @@ export var OutputMatrix2D = React.createClass({
         }
 
         return <div className="Output 2D_Matrix Matrix">
-            <div className="container">
+            <div className="container dragHandle">
                 <div className="name">2D Matrix {this.props.id}</div>
             </div>
             <div className="parameters">

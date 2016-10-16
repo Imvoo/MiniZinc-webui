@@ -6,7 +6,6 @@ import './ModelForm.css';
 import { InputSelectionBarContainer } from '../InputSelectionBar/InputSelectionBarContainer';
 import { OutputSelectionBarContainer } from '../OutputSelectionBarContainer';
 import { InputHolderContainer } from '../InputHolderContainer';
-import { OutputHolderContainer } from '../OutputHolderContainer';
 
 export var ModelForm = React.createClass({
     propTypes: {
@@ -145,7 +144,6 @@ export var ModelForm = React.createClass({
                 <div className="Arguments">
                     {inputs}
                 </div>
-                <InputHolderContainer />
             </div>
             <div className="Outputs">
                 <h1>Outputs</h1>
@@ -153,7 +151,9 @@ export var ModelForm = React.createClass({
                 <div className="Arguments">
                     {outputs}
                 </div>
-                <OutputHolderContainer />
+            </div>
+            <div>
+                <InputHolderContainer />
             </div>
         </div>
     }
